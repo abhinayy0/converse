@@ -9,15 +9,13 @@ function MainContainer(props) {
   function fetchMessages() {
     if (!channel.id) return;
 
-    firestore
-      .collection('messages')
-      .where('channel', '==', channel.id)
-      .orderBy('created_at', 'asc')
-      .get()
-      .then((snapshot) => {
+    firestore;
+    fetch('http://127.0.0.1:8000/converse/messages')
+      .then((response) => response.json())
+      .then((data) => {
         // const channels = snapshot.docs;
-        const messages = snapshot.docs.map((doc) => {
-          return { id: doc.id, ...doc.data() };
+        const messages = data.map((message) => {
+          return { id: message.id, text: message.data() };
         });
         setMessages(messages);
       })

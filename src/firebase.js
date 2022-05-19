@@ -22,6 +22,9 @@ const googleProvider = new firebase.auth.GoogleAuthProvider();
 export const signInWithGoogle = () => {
   auth.signInWithPopup(googleProvider);
 };
+export const signInWithNotes = () => {
+  console.log('called backend');
+};
 
 export const signOut = () => {
   auth.signOut();

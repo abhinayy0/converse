@@ -2,7 +2,7 @@ import React, { Component, createContext } from 'react';
 import { auth } from '../firebase';
 import { createOrGetUserProfileDocument } from '../firebase';
 
-const initialUserState = { user: null, loading: true };
+const initialUserState = { user: 'abhinay', loading: false };
 export const UserContext = createContext(initialUserState);
 
 class UserProvider extends Component {
@@ -10,19 +10,34 @@ class UserProvider extends Component {
 
   componentDidMount = async () => {
     /* Will be fired whenever user goes from loggedin to log out state or vice versa */
+    this.setState({
+      // user: { uid: snapshot.id, ...snapshot.data() },
+      user: { uid: '1' },
+
+      loading: false,
+    });
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
-        const userRef = await createOrGetUserProfileDocument(userAuth);
+        // const userRef = await createOrGetUserProfileDocument(userAuth);
 
         // Attach listener to listen to user changes in firestore
-        userRef.onSnapshot((snapshot) => {
-          this.setState({
-            user: { uid: snapshot.id, ...snapshot.data() },
-            loading: false,
-          });
+        this.setState({
+          // user: { uid: snapshot.id, ...snapshot.data() },
+          user: { uid: '1' },
+
+          loading: false,
         });
+
+        // userRef.onSnapshot((snapshot) => {
+        //   this.setState({
+        //     // user: { uid: snapshot.id, ...snapshot.data() },
+        //     user: { uid: "1" },
+
+        //     loading: false,
+        //   });
+        // });
       }
-      this.setState({ user: userAuth, loading: false });
+      this.setState({ user: 'dfdsfdgffgdg', loading: false });
     });
   };
 

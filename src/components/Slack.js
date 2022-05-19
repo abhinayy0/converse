@@ -15,15 +15,15 @@ function Slack(props) {
   const channelId = query.get('id');
 
   useEffect(() => {
-    console.log('HOLA', auth.currentUser.uid);
-    firestore
-      .collection('channels')
-      .where('members', 'array-contains', String(auth.currentUser.uid))
-      .get()
+    console.log('HOLA', 'auth.currentUser.uid');
+
+    fetch('http://127.0.0.1:8000/converse/channels')
+      .then((response) => response.json())
       .then((snapshot) => {
         // const channels = snapshot.docs;
-        const channels = snapshot.docs.map((doc) => {
-          return { id: doc.id, ...doc.data() };
+        console.log(snapshot);
+        const channels = snapshot.map((doc) => {
+          return { id: doc.id, name: doc.name, description: doc.descriptions };
         });
         setChannels(channels);
 

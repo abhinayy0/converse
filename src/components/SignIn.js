@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import { UserContext } from '../providers/UserProvider';
-import { signInWithGoogle } from '../firebase';
+import { signInWithGoogle, signInWithNotes } from '../firebase';
 
 function SignIn(props) {
   const auth = useContext(UserContext);
@@ -25,6 +25,10 @@ function SignIn(props) {
       <button className="btn basic-btn" onClick={signInWithGoogle}>
         <img src="https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Google-256.png" />
         Sign up with Google
+      </button>
+      <button className="btn basic-btn" onClick={signInWithNotes}>
+        <img src="https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Google-256.png" />
+        Backup Login
       </button>
     </div>
   );
